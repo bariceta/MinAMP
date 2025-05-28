@@ -1,0 +1,16 @@
+#!/bin/bash
+## Initial SBATCH commands
+#SBATCH --job-name=5pct_selection
+#SBATCH -p short
+#SBATCH --mem=10G
+#SBATCH --cpus-per-task=4
+#SBATCH --output=5pct_selection.log
+
+module load BCFtools/1.18-GCC-12.3.0
+
+# Run it for each variant file (Variant_file.vcf) and will obtain a filtered file (Filtered_variant_file)
+# regions_amplicons.bed is a bed file including analyzed amplicons per sample.
+
+bcftools filter -i 'FORMAT/DP[0]  > 10000 & FORMAT/VAF[*] > 0.05' -R regions_amplicons.bed Variant_file.vcf > Filtered_variant_file.vcf
+
+

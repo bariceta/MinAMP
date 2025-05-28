@@ -1,0 +1,27 @@
+#!/bin/bash
+## Initial SBATCH commands
+#SBATCH --job-name=nf-nanoSeq
+#SBATCH -p short
+#SBATCH --mem=90G
+#SBATCH --cpus-per-task=24
+#SBATCH --output=nf-ONT-nanoSeq.log
+
+module load Nextflow/24.04.2
+
+cat ./*fastq.gz > ./fastqs/combined.fastq.gz    ## Combine all fastqs from all samples in an unique fastq file
+
+
+# Run nanoseq with singularity profile to obtain each alignment and variant calling file from the samples included in the sample sheet.
+nextflow run nf-core/nanoseq \
+    --input SampleSheet.csv \
+    --protocol DNA \
+    --barcode_kit 'NBD104/NBD114' \
+    --skip_quantification \
+    -profile singularity \
+    --call_variants \
+    --variant_caller 'pepper_margin_deepvariant' \
+    --skip_sv \
+    --input_path './fastqs/combined.fastq.gz' \
+    --outdir ./resultados \
+    --skip_bigbed \
+    --skip_bigwig
