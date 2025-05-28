@@ -1,2 +1,4 @@
 # MinAMP
-Pipelines for Minion amplicon sequencing analysis
+Scripts for Minion amplicon sequencing analysis (Pending publication).
+
+
