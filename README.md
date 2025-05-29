@@ -1,5 +1,6 @@
 # MinAMP
-Scripts for Minion amplicon sequencing analysis (Pending publication).
+Scripts for Minion amplicon sequencing analysis in manuscript:
+From Sanger to Oxford Nanopore MinION Technology: The Impact of Third-Generation Sequencing on Genetic Hematological Diagnosis (doi: 10.3390/cancers17111811).
 
 Scripts description:
 
